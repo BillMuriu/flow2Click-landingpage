@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Complete AI & Automation Solutions | Custom Workflows + User-Friendly UIs
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              gradient: "gradient 8s ease infinite",
+              float: "float 6s ease-in-out infinite",
+              "pulse-slow": "pulse 3s ease-in-out infinite",
+            },
+            keyframes: {
+              gradient: {
+                "0%, 100%": {
+                  "background-size": "200% 200%",
+                  "background-position": "left center",
+                },
+                "50%": {
+                  "background-size": "200% 200%",
+                  "background-position": "right center",
+                },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .gradient-bg {
+        background: linear-gradient(135deg, #374151, #4b5563, #1f2937);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Floating Navigation -->
+    <nav
+      class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/20 backdrop-blur-md rounded-full px-6 py-3 border border-white/10 shadow-lg"
+    >
+      <div class="flex items-center space-x-6">
+        <!-- Business Icon & Name -->
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-sm">F2C</span>
+          </div>
+          <span class="text-white font-semibold text-sm tracking-wide"
+            >Flow2Click</span
+          >
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center space-x-4">
+          <a
+            href="#home"
+            class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          >
+            Home
+          </a>
+          <a
+            href="#services"
+            class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          >
+            Services
+          </a>
+          <a
+            href="#how-it-works"
+            class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          >
+            How It Works
+          </a>
+          <a
+            href="#contact"
+            class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          >
+            Contact
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="md:hidden text-white/80 hover:text-white transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu (Initially Hidden) -->
+    <div
+      id="mobileMenu"
+      class="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 bg-black/20 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-lg hidden"
+    >
+      <div class="flex flex-col space-y-3">
+        <a
+          href="#home"
+          class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          Home
+        </a>
+        <a
+          href="#services"
+          class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          Services
+        </a>
+        <a
+          href="#how-it-works"
+          class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          How It Works
+        </a>
+        <a
+          href="#contact"
+          class="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200"
+          onclick="toggleMobileMenu()"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <!-- Lead Qualification Modal -->
+    <div
+      id="qualificationModal"
+      class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm"
+    >
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div
+          class="bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700"
+        >
+          <!-- Modal Header -->
+          <div class="p-6 border-b border-gray-700">
+            <div class="flex items-center justify-between">
+              <h2 class="text-2xl font-bold text-white">Let's Get Started</h2>
+              <button
+                onclick="closeQualificationModal()"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <p class="text-gray-300 mt-2">
+              Help us understand your project better so we can provide the most
+              relevant solutions.
+            </p>
+          </div>
+
+          <!-- Modal Content -->
+          <form id="qualificationForm" class="p-6 space-y-6">
+            <!-- Contact Information -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2"
+                  >Name *</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  placeholder="Your full name"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2"
+                  >Email *</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
+            <!-- Budget Range -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-3"
+                >Project Budget Range *</label
+              >
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="budget"
+                    value="under-200"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">Under $200</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="budget"
+                    value="200-500"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">$200 - $500</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="budget"
+                    value="500-1000"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">$500 - $1,000</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="budget"
+                    value="1000-5000"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">$1,000 - $5,000</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="budget"
+                    value="over-5000"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">$5,000+</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Timeline -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-3"
+                >Project Timeline *</label
+              >
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="under-1-week"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white text-sm">Under 1 week</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="1-2-weeks"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white text-sm">1-2 weeks</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="2-4-weeks"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white text-sm">2-4 weeks</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="over-1-month"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white text-sm">1+ months</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Project Type -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-3"
+                >Primary Project Type *</label
+              >
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="projectType"
+                    value="workflow-automation"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">Workflow Automation</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="projectType"
+                    value="custom-dashboard"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">Custom Dashboard/UI</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="projectType"
+                    value="data-integration"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">Data Integration</span>
+                </label>
+                <label
+                  class="flex items-center p-4 bg-gray-700 rounded-lg border border-gray-600 hover:border-blue-500 cursor-pointer transition-colors"
+                >
+                  <input
+                    type="radio"
+                    name="projectType"
+                    value="other"
+                    required
+                    class="text-blue-500 focus:ring-blue-500"
+                  />
+                  <span class="ml-3 text-white">Other/Combination</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Company Size -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-3"
+                >Company Size</label
+              >
+              <select
+                name="companySize"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              >
+                <option value="">Select company size (optional)</option>
+                <option value="solo">Solo/Freelancer</option>
+                <option value="startup">Startup (2-10 employees)</option>
+                <option value="small">Small Business (11-50 employees)</option>
+                <option value="medium">
+                  Medium Business (51-200 employees)
+                </option>
+                <option value="large">Large Enterprise (200+ employees)</option>
+              </select>
+            </div>
+
+            <!-- Additional Information -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2"
+                >Brief Project Description</label
+              >
+              <textarea
+                name="description"
+                rows="3"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                placeholder="Tell us briefly about what you want to automate or build..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex gap-4 pt-4">
+              <button
+                type="button"
+                onclick="closeQualificationModal()"
+                class="flex-1 px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+              >
+                Continue to Booking
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center justify-center gradient-bg"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+      <!-- Floating Elements -->
+      <div
+        class="absolute top-20 left-10 w-20 h-20 bg-white bg-opacity-10 rounded-full blur-xl animate-float"
+      ></div>
+      <div
+        class="absolute bottom-32 right-16 w-32 h-32 bg-purple-400 bg-opacity-20 rounded-full blur-2xl animate-float"
+        style="animation-delay: -2s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400 bg-opacity-15 rounded-full blur-lg animate-float"
+        style="animation-delay: -4s"
+      ></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div class="mb-8 mt-28 animate-pulse-slow">
+          <span
+            class="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-semibold backdrop-blur-sm border border-white border-opacity-30"
+          >
+            🚀 Complete Automation Solutions
+          </span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+          Powerful Automation
+          <br />
+          <span
+            class="bg-gradient-to-r from-blue-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent"
+          >
+            Beautiful Interfaces
+          </span>
+        </h1>
+
+        <!-- Hero Image -->
+        <div class="flex justify-center mb-8">
+          <img
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Team collaborating on automation workflows"
+            class="rounded-2xl shadow-2xl max-w-full h-auto object-cover border border-white border-opacity-20"
+          />
+        </div>
+
+        <p
+          class="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-gray-100"
+        >
+          We build the complete solution:
+          <strong>advanced automation workflows</strong> AND the
+          <strong>custom user interfaces</strong> that make them accessible to
+          your team and clients.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+        >
+          <button
+            onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+            class="px-12 py-4 bg-white text-gray-900 font-bold text-lg rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
+          >
+            Start Your Project
+          </button>
+          <button
+            onclick="document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'})"
+            class="px-12 py-4 border-2 border-white border-opacity-50 backdrop-blur-sm rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300 font-semibold"
+          >
+            See How It Works
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-16"
+        >
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300">100%</div>
+            <div class="text-sm text-gray-200">Custom Solutions</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-blue-300">End-to-End</div>
+            <div class="text-sm text-gray-200">Service</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-green-300">Enterprise</div>
+            <div class="text-sm text-gray-200">Ready</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-purple-300">24/7</div>
+            <div class="text-sm text-gray-200">Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section id="services" class="py-24 bg-gray-800 relative">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            The <span class="text-red-400">Problem</span> Most Businesses Face
+          </h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            You've built powerful automations, but they're trapped behind
+            technical interfaces that your team and clients can't easily use.
+          </p>
+        </div>
+
+        <!-- Problem Content - 2 Column Layout -->
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+          <!-- Problem Text Column -->
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-red-500 bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-2xl">❌</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Technical Barriers</h3>
+                <p class="text-gray-400">
+                  Workflow tools like n8n and Make.com are powerful but
+                  intimidating for non-technical users.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-red-500 bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-2xl">🔒</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Locked Potential</h3>
+                <p class="text-gray-400">
+                  Your automations can't reach their full impact when people
+                  can't easily interact with them.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-red-500 bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-2xl">⚡</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Adoption Issues</h3>
+                <p class="text-gray-400">
+                  Even the best automation fails if your team won't use it
+                  because it's too complex.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Problem Image Column -->
+          <div class="flex justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Frustrated person looking at complex technical interface"
+              class="rounded-xl shadow-lg w-full max-w-lg h-96 object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Solution -->
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Our <span class="text-green-400">Complete Solution</span>
+          </h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            We bridge the gap between powerful automation and effortless user
+            experience.
+          </p>
+        </div>
+
+        <!-- Solution Content - 2 Column Layout -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <!-- Solution Card Column -->
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300"
+            >
+              <h3 class="text-2xl font-bold mb-4 text-center">
+                Our Complete Approach
+              </h3>
+              <div class="space-y-4">
+                <div
+                  class="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-lg"
+                >
+                  <div class="text-sm">Backend Automation</div>
+                  <div class="text-green-200">✅ n8n/Make.com workflows</div>
+                </div>
+                <div
+                  class="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-lg"
+                >
+                  <div class="text-sm">Custom UI Layer</div>
+                  <div class="text-green-200">
+                    ✅ Beautiful, branded interfaces
+                  </div>
+                </div>
+                <div
+                  class="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-lg"
+                >
+                  <div class="text-sm">User Adoption</div>
+                  <div class="text-green-200">✅ Intuitive & accessible</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solution Image Column -->
+          <div class="flex justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80"
+              alt="Modern dashboard interface showing successful automation"
+              class="rounded-xl shadow-lg w-full max-w-lg h-96 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Deliver -->
+    <section class="py-24 bg-gray-900">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">What You Get</h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            A complete, production-ready solution that your team will actually
+            want to use.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div
+            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6"
+            >
+              <span class="text-2xl">⚙️</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Backend Automation</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Complete n8n/Make.com workflows</li>
+              <li>• API integrations & data transformation</li>
+              <li>• Conditional logic & error handling</li>
+              <li>• Scheduling & triggers</li>
+              <li>• Secure & scalable architecture</li>
+            </ul>
+          </div>
+
+          <div
+            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6"
+            >
+              <span class="text-2xl">🎨</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Custom Frontend</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Branded, responsive web apps</li>
+              <li>• User-friendly dashboards</li>
+              <li>• Real-time data visualization</li>
+              <li>• Role-based access control</li>
+              <li>• Export & reporting features</li>
+            </ul>
+          </div>
+
+          <div
+            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6"
+            >
+              <span class="text-2xl">🚀</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Deployment & Support</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Production-ready hosting</li>
+              <li>• Secure authentication</li>
+              <li>• Performance monitoring</li>
+              <li>• Regular updates & maintenance</li>
+              <li>• Technical support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-24 bg-gray-800">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">Perfect For</h2>
+          <p class="text-xl text-gray-300">
+            See how our solutions transform different business scenarios
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="bg-gray-700 rounded-2xl p-8 hover:bg-gray-650 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <span class="text-xl">👥</span>
+              </div>
+              <h3 class="text-2xl font-bold">Client Portals</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Let clients submit requests, track progress, and view results
+              through a beautiful branded interface.
+            </p>
+            <div class="text-sm text-gray-400">
+              Backend: Form processing, status tracking, notification workflows
+              <br />
+              Frontend: Client dashboard, request forms, progress tracking
+            </div>
+          </div>
+
+          <div
+            class="bg-gray-700 rounded-2xl p-8 hover:bg-gray-650 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <span class="text-xl">📊</span>
+              </div>
+              <h3 class="text-2xl font-bold">Operations Dashboards</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Monitor workflows, approve processes, and trigger automation runs
+              from an intuitive control center.
+            </p>
+            <div class="text-sm text-gray-400">
+              Backend: Workflow monitoring, approval systems, data aggregation
+              <br />
+              Frontend: Real-time dashboards, approval interfaces, control
+              panels
+            </div>
+          </div>
+
+          <div
+            class="bg-gray-700 rounded-2xl p-8 hover:bg-gray-650 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <span class="text-xl">🤖</span>
+              </div>
+              <h3 class="text-2xl font-bold">AI-Powered Apps</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Combine LLMs, APIs, and automation to create intelligent
+              applications with stunning interfaces.
+            </p>
+            <div class="text-sm text-gray-400">
+              Backend: AI processing, data enrichment, smart workflows
+              <br />
+              Frontend: Chat interfaces, result visualization, interactive tools
+            </div>
+          </div>
+
+          <div
+            class="bg-gray-700 rounded-2xl p-8 hover:bg-gray-650 transition-colors duration-300"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-orange-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <span class="text-xl">📈</span>
+              </div>
+              <h3 class="text-2xl font-bold">Data Analysis Tools</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Transform raw automation outputs into interactive charts, reports,
+              and insights.
+            </p>
+            <div class="text-sm text-gray-400">
+              Backend: Data processing, analysis workflows, report generation
+              <br />
+              Frontend: Interactive charts, export tools, filtering interfaces
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-gray-900">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">How It Works</h2>
+          <p class="text-xl text-gray-300">
+            From concept to deployment in a streamlined process
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gray-700 border-2 border-blue-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-blue-300"
+            >
+              1
+            </div>
+            <h3 class="text-xl font-bold mb-4">Discovery</h3>
+            <p class="text-gray-300">
+              We analyze your needs, existing systems, and define the perfect
+              automation + UI solution.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gray-700 border-2 border-purple-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-purple-300"
+            >
+              2
+            </div>
+            <h3 class="text-xl font-bold mb-4">Design</h3>
+            <p class="text-gray-300">
+              We create workflow blueprints and UI mockups for your approval
+              before development begins.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gray-700 border-2 border-pink-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-pink-300"
+            >
+              3
+            </div>
+            <h3 class="text-xl font-bold mb-4">Build</h3>
+            <p class="text-gray-300">
+              Parallel development of backend workflows and frontend interfaces
+              with regular progress updates.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gray-700 border-2 border-green-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-green-300"
+            >
+              4
+            </div>
+            <h3 class="text-xl font-bold mb-4">Launch</h3>
+            <p class="text-gray-300">
+              Secure deployment, team training, and ongoing support to ensure
+              smooth operation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-gray-800">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Choose Us</h2>
+          <p class="text-xl text-gray-300">
+            The only team you need for complete automation solutions
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-2xl font-bold mb-4 flex items-center">
+                <span
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 text-sm"
+                  >✓</span
+                >
+                End-to-End Expertise
+              </h3>
+              <p class="text-gray-300 pl-12">
+                Deep knowledge of both automation tools (n8n, Make.com) and
+                modern web development (React, Next.js). No coordination
+                headaches.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold mb-4 flex items-center">
+                <span
+                  class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-4 text-sm"
+                  >✓</span
+                >
+                Business-Ready Solutions
+              </h3>
+              <p class="text-gray-300 pl-12">
+                Built for scale, security, and real-world use. Role-based
+                access, error handling, monitoring, and maintenance included.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold mb-4 flex items-center">
+                <span
+                  class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-4 text-sm"
+                  >✓</span
+                >
+                User Adoption Focus
+              </h3>
+              <p class="text-gray-300 pl-12">
+                We design interfaces that people actually want to use.
+                Beautiful, intuitive, and perfectly tailored to your team's
+                workflow.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gray-700 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold mb-6 text-center">
+              Traditional vs. Our Approach
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="flex justify-between items-center py-3 border-b border-gray-600"
+              >
+                <span class="text-gray-300">Automation Only</span>
+                <span class="text-red-400">Others</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-3 border-b border-gray-600"
+              >
+                <span class="text-gray-300">Complete Solution</span>
+                <span class="text-green-400">Us</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-3 border-b border-gray-600"
+              >
+                <span class="text-gray-300">Technical Interfaces</span>
+                <span class="text-red-400">Others</span>
+              </div>
+              <div
+                class="flex justify-between items-center py-3 border-b border-gray-600"
+              >
+                <span class="text-gray-300">User-Friendly UIs</span>
+                <span class="text-green-400">Us</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-gray-300">Multiple Vendors</span>
+                <span class="text-red-400">Others</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-gray-300">Single Partner</span>
+                <span class="text-green-400">Us</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      id="contact"
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800 relative overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+      <!-- Background Elements -->
+      <div
+        class="absolute top-10 right-10 w-40 h-40 bg-white bg-opacity-5 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-20 left-20 w-60 h-60 bg-gray-400 bg-opacity-10 rounded-full blur-3xl"
+      ></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-8">
+          Book a <span class="text-blue-300">Discovery Call</span>
+        </h2>
+        <p class="text-xl md:text-2xl mb-12 text-gray-100">
+          Schedule a free 30-minute discovery call to discuss your automation
+          needs and see how we can help transform your business.
+        </p>
+
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-12 mb-12 text-center"
+          >
+            <div class="mb-8">
+              <h3 class="text-3xl font-bold mb-4">Ready to Get Started?</h3>
+              <p class="text-xl text-gray-200 mb-8">
+                Schedule a free 30-minute discovery call to discuss your
+                automation needs and see how we can help transform your
+                business.
+              </p>
+
+              <button
+                onclick="openQualificationModal()"
+                class="inline-block px-12 py-4 bg-white text-gray-900 font-bold text-xl rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl cursor-pointer"
+              >
+                📅 Book Your Discovery Call
+              </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+              <div
+                class="flex items-center justify-center space-x-2 text-gray-200"
+              >
+                <span class="text-gray-300">✓</span>
+                <span>30 minutes</span>
+              </div>
+              <div
+                class="flex items-center justify-center space-x-2 text-gray-200"
+              >
+                <span class="text-gray-300">✓</span>
+                <span>Completely free</span>
+              </div>
+              <div
+                class="flex items-center justify-center space-x-2 text-gray-200"
+              >
+                <span class="text-gray-300">✓</span>
+                <span>No obligations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row gap-6 justify-center items-center"
+        >
+          <div class="flex items-center space-x-2 text-gray-200">
+            <span class="text-green-400">✓</span>
+            <span>Free consultation</span>
+          </div>
+          <div class="flex items-center space-x-2 text-gray-200">
+            <span class="text-green-400">✓</span>
+            <span>No commitment required</span>
+          </div>
+          <div class="flex items-center space-x-2 text-gray-200">
+            <span class="text-green-400">✓</span>
+            <span>24-hour response</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gray-900 border-t border-gray-800">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+          <div class="col-span-2">
+            <h3 class="text-2xl font-bold mb-4">
+              Complete Automation Solutions
+            </h3>
+            <p class="text-gray-400 mb-6 max-w-md">
+              We build the complete solution: powerful automation workflows AND
+              the beautiful, user-friendly interfaces that make them accessible
+              to everyone.
+            </p>
+            <div class="flex space-x-4">
+              <div
+                class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
+              >
+                <span class="text-blue-400">📧</span>
+              </div>
+              <div
+                class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
+              >
+                <span class="text-blue-400">💼</span>
+              </div>
+              <div
+                class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
+              >
+                <span class="text-blue-400">🐦</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Services</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Workflow Automation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Custom UI Development</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >API Integration</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Client Portals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >AI-Powered Apps</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Technologies</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>n8n Workflows</li>
+              <li>Make.com Integration</li>
+              <li>React & Next.js</li>
+              <li>API Development</li>
+              <li>Cloud Deployment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <div class="text-gray-400 mb-4 sm:mb-0">
+            © 2025 Complete Automation Solutions. All rights reserved.
+          </div>
+          <div class="flex space-x-6 text-gray-400">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form submission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(this);
+        const name = this.querySelector('input[type="text"]').value;
+        const email = this.querySelector('input[type="email"]').value;
+        const message = this.querySelector("textarea").value;
+
+        // Simulate form submission
+        const button = this.querySelector("button");
+        const originalText = button.textContent;
+
+        button.textContent = "Sending...";
+        button.disabled = true;
+
+        setTimeout(() => {
+          button.textContent = "Message Sent! ✓";
+          button.classList.add("bg-green-500", "hover:bg-green-600");
+          button.classList.remove("bg-white", "hover:bg-gray-100");
+
+          // Reset form
+          this.reset();
+
+          // Reset button after 3 seconds
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+            button.classList.remove("bg-green-500", "hover:bg-green-600");
+            button.classList.add("bg-white", "hover:bg-gray-100");
+          }, 3000);
+        }, 2000);
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Add CSS for fade-in animation
+      const style = document.createElement("style");
+      style.textContent = `
+            .animate-fade-in {
+                animation: fadeIn 0.8s ease-in-out;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            /* Glassmorphism effect */
+            .backdrop-blur-lg {
+                backdrop-filter: blur(16px);
+            }
+            
+            .backdrop-blur-sm {
+                backdrop-filter: blur(4px);
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Make toggleMobileMenu globally accessible
+      window.toggleMobileMenu = toggleMobileMenu;
+
+      // Lead Qualification Modal Functions
+      function openQualificationModal() {
+        document
+          .getElementById("qualificationModal")
+          .classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeQualificationModal() {
+        document.getElementById("qualificationModal").classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Handle qualification form submission
+      document
+        .getElementById("qualificationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = new FormData(this);
+
+          const qualificationData = {
+            name: formData.get("name") || "",
+            email: formData.get("email") || "",
+            budget: formData.get("budget") || "",
+            timeline: formData.get("timeline") || "",
+            projectType: formData.get("projectType") || "",
+            companySize: formData.get("companySize") || "",
+            description: formData.get("description") || "",
+            timestamp: new Date().toISOString(),
+            source: "homepage-discovery-call",
+          };
+
+          // Show loading state
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "Processing...";
+          submitBtn.disabled = true;
+
+          // Send data to webhook and handle response
+          sendToWebhook(qualificationData)
+            .then(() => {
+              // Success - close modal and redirect to booking
+              closeQualificationModal();
+
+              // Reset form and button first
+              this.reset();
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+
+              // Then redirect to Cal.com
+              setTimeout(() => {
+                window.open(
+                  "https://cal.com/flow-2-click/discovery-call",
+                  "_blank"
+                );
+              }, 300);
+            })
+            .catch((error) => {
+              // Error - still proceed to booking
+              console.error("Webhook failed:", error);
+
+              // Close modal and redirect to booking anyway
+              closeQualificationModal();
+
+              // Reset form and button first
+              this.reset();
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+
+              // Then redirect to Cal.com
+              setTimeout(() => {
+                window.open(
+                  "https://cal.com/flow-2-click/discovery-call",
+                  "_blank"
+                );
+              }, 300);
+            });
+        });
+
+      // Function to send data to n8n webhook with query parameters
+      function sendToWebhook(data) {
+        const webhookUrl =
+          "https://n8n.flow2click.com/webhook-test/lead-qualification";
+
+        // Convert data object to URL query parameters
+        const queryParams = new URLSearchParams();
+        Object.keys(data).forEach((key) => {
+          if (
+            data[key] !== null &&
+            data[key] !== undefined &&
+            data[key] !== ""
+          ) {
+            queryParams.append(key, data[key]);
+          }
+        });
+
+        // Construct full URL with query parameters
+        const fullUrl = `${webhookUrl}?${queryParams.toString()}`;
+
+        // Send GET request with query parameters and return Promise
+        return fetch(fullUrl, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((result) => {
+            console.log("Webhook response:", result);
+            return result;
+          });
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("qualificationModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeQualificationModal();
+          }
+        });
+
+      // Make functions globally accessible
+      window.openQualificationModal = openQualificationModal;
+      window.closeQualificationModal = closeQualificationModal;
+    </script>
+  </body>
+</html>
