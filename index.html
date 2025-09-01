@@ -44,7 +44,9 @@
       }
     </style>
   </head>
-  <body class="bg-gray-900 text-white overflow-x-hidden">
+  <body
+    class="bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800 text-white overflow-x-hidden"
+  >
     <!-- Floating Navigation -->
     <nav
       class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-black/20 backdrop-blur-md rounded-full px-6 py-3 border border-white/10 shadow-lg"
@@ -52,10 +54,20 @@
       <div class="flex items-center space-x-6">
         <!-- Business Icon & Name -->
         <div class="flex items-center space-x-3">
-          <div
-            class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
-          >
-            <span class="text-white font-bold text-sm">F2C</span>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <img
+              src="site-logo.svg"
+              alt="Flow2Click Logo"
+              class="w-8 h-8 object-contain rounded-full"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Fallback if SVG fails to load -->
+            <div
+              class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center"
+              style="display: none"
+            >
+              <span class="text-white font-bold text-xs">F2C</span>
+            </div>
           </div>
           <span class="text-white font-semibold text-sm tracking-wide"
             >Flow2Click</span
@@ -156,7 +168,7 @@
     >
       <div class="flex items-center justify-center min-h-screen p-4">
         <div
-          class="bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700"
+          class="bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-600"
         >
           <!-- Modal Header -->
           <div class="p-6 border-b border-gray-700">
@@ -457,7 +469,7 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="relative min-h-screen flex items-center justify-center gradient-bg"
+      class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800"
     >
       <div class="absolute inset-0 bg-black bg-opacity-40"></div>
 
@@ -553,7 +565,10 @@
     </section>
 
     <!-- Problem/Solution Section -->
-    <section id="services" class="py-24 bg-gray-800 relative">
+    <section
+      id="services"
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800 relative"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">
@@ -641,7 +656,7 @@
           <!-- Solution Card Column -->
           <div class="relative">
             <div
-              class="bg-gradient-to-br from-green-500 to-blue-600 rounded-2xl p-8 transform hover:scale-105 transition-transform duration-300"
+              class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 border border-white border-opacity-20 hover:bg-opacity-15 transition-all duration-300"
             >
               <h3 class="text-2xl font-bold mb-4 text-center">
                 Our Complete Approach
@@ -684,7 +699,9 @@
     </section>
 
     <!-- What We Deliver -->
-    <section class="py-24 bg-gray-900">
+    <section
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">What You Get</h2>
@@ -696,10 +713,10 @@
 
         <div class="grid md:grid-cols-3 gap-8 mb-16">
           <div
-            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+            class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 hover:bg-opacity-15 transition-all duration-300"
           >
             <div
-              class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6"
+              class="w-16 h-16 bg-white bg-opacity-10 rounded-2xl flex items-center justify-center mb-6 border border-white border-opacity-20"
             >
               <span class="text-2xl">⚙️</span>
             </div>
@@ -714,10 +731,10 @@
           </div>
 
           <div
-            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+            class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 hover:bg-opacity-15 transition-all duration-300"
           >
             <div
-              class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6"
+              class="w-16 h-16 bg-white bg-opacity-10 rounded-2xl flex items-center justify-center mb-6 border border-white border-opacity-20"
             >
               <span class="text-2xl">🎨</span>
             </div>
@@ -732,10 +749,10 @@
           </div>
 
           <div
-            class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors duration-300"
+            class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 hover:bg-opacity-15 transition-all duration-300"
           >
             <div
-              class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6"
+              class="w-16 h-16 bg-white bg-opacity-10 rounded-2xl flex items-center justify-center mb-6 border border-white border-opacity-20"
             >
               <span class="text-2xl">🚀</span>
             </div>
@@ -753,7 +770,9 @@
     </section>
 
     <!-- Use Cases -->
-    <section class="py-24 bg-gray-800">
+    <section
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">Perfect For</h2>
@@ -768,7 +787,7 @@
           >
             <div class="flex items-center mb-4">
               <div
-                class="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+                class="w-12 h-12 bg-white bg-opacity-10 rounded-lg flex items-center justify-center mr-4 border border-white border-opacity-20"
               >
                 <span class="text-xl">👥</span>
               </div>
@@ -790,7 +809,7 @@
           >
             <div class="flex items-center mb-4">
               <div
-                class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+                class="w-12 h-12 bg-white bg-opacity-10 rounded-lg flex items-center justify-center mr-4 border border-white border-opacity-20"
               >
                 <span class="text-xl">📊</span>
               </div>
@@ -813,7 +832,7 @@
           >
             <div class="flex items-center mb-4">
               <div
-                class="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+                class="w-12 h-12 bg-white bg-opacity-10 rounded-lg flex items-center justify-center mr-4 border border-white border-opacity-20"
               >
                 <span class="text-xl">🤖</span>
               </div>
@@ -835,7 +854,7 @@
           >
             <div class="flex items-center mb-4">
               <div
-                class="w-12 h-12 bg-orange-500 bg-opacity-20 rounded-lg flex items-center justify-center mr-4"
+                class="w-12 h-12 bg-white bg-opacity-10 rounded-lg flex items-center justify-center mr-4 border border-white border-opacity-20"
               >
                 <span class="text-xl">📈</span>
               </div>
@@ -856,7 +875,10 @@
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="py-24 bg-gray-900">
+    <section
+      id="how-it-works"
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">How It Works</h2>
@@ -868,7 +890,7 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="text-center">
             <div
-              class="w-20 h-20 bg-gray-700 border-2 border-blue-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-blue-300"
+              class="w-20 h-20 bg-white bg-opacity-10 border-2 border-white border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-white"
             >
               1
             </div>
@@ -881,7 +903,7 @@
 
           <div class="text-center">
             <div
-              class="w-20 h-20 bg-gray-700 border-2 border-purple-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-purple-300"
+              class="w-20 h-20 bg-white bg-opacity-10 border-2 border-white border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-white"
             >
               2
             </div>
@@ -894,7 +916,7 @@
 
           <div class="text-center">
             <div
-              class="w-20 h-20 bg-gray-700 border-2 border-pink-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-pink-300"
+              class="w-20 h-20 bg-white bg-opacity-10 border-2 border-white border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-white"
             >
               3
             </div>
@@ -907,7 +929,7 @@
 
           <div class="text-center">
             <div
-              class="w-20 h-20 bg-gray-700 border-2 border-green-400 border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-green-300"
+              class="w-20 h-20 bg-white bg-opacity-10 border-2 border-white border-opacity-30 rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto text-white"
             >
               4
             </div>
@@ -922,7 +944,9 @@
     </section>
 
     <!-- Why Choose Us -->
-    <section class="py-24 bg-gray-800">
+    <section
+      class="py-24 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Choose Us</h2>
@@ -1108,7 +1132,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 bg-gray-900 border-t border-gray-800">
+    <footer
+      class="py-16 bg-gradient-to-br from-gray-700 via-gray-600 to-gray-800 border-t border-gray-700"
+    >
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid md:grid-cols-4 gap-8 mb-12">
           <div class="col-span-2">
